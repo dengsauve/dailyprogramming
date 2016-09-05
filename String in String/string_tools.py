@@ -7,3 +7,13 @@ def is_in_name(word, name):
         if counter < limit and letter == word[counter]:
             counter += 1
     return True if counter == limit else False
+
+
+def condense_string(input_string):
+    return input_string.lower().replace(' ','')
+
+
+def get_dictionary(filepath):
+    with open(filepath) as f:
+        dictionary = f.read().splitlines()
+    return dictionary
