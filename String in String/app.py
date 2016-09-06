@@ -1,30 +1,28 @@
-from string_tools import is_word_in_target, condense_string, get_dictionary_list
+from string_tools import is_word_in_target, condense_string, get_dictionary_list, cull_list
 dictionary = get_dictionary_list('Dictionary/enableDict.txt')
 
 
 def main():
     name_list = ("Ada Lovelace", "Haskell Curry", "Dennis Sauve")
     for name in name_list:
-        name = condense_string(name)
-        length, winner = 0, ""
+        name, length, winners = condense_string(name), 0, []
         for word in dictionary:
-            if name[0] == word[0] and length < len(word) <= len(name) and is_word_in_target(word, name):
-                winner, length = word, len(word)
-        print("For " + name + " the winner is: " + winner)
+            if name.startswith(word[0]) and length <= len(word) <= len(name) and is_word_in_target(word, name):
+                winners.append(word)
+                length = len(word)
+        print("For " + name + " the winners are: " + cull_list(winners))
 
 
 def challenge():
     name_list = ("Donald Knuth", "Alan Turing", "Claude Shannon"," Ada Lovelace", "Haskell Curry", "Dennis Sauve")
     for name in name_list:
-        name = condense_string(name)
-        all_words = []
-        max_length = 0
+        name, max_index, all_words, max_length = condense_string(name), len(name) - 1, [], 0
         for word in dictionary:
-            if name[0] == word[0] and len(word) <= len(name) and is_word_in_target(word, name):
-                all_words.append(word)
-                if len(word) > max_length:
-                    max_length = len(word)
-        print(all_words, max_length)
+            if name.startswith(word[0]) and len(word) <= len(name):
+                it_is, word_index = is_word_in_target(word, name, True)
+                if it_is:
+                    all_words.append((word, word_index))
+            
 
 
 main()

@@ -21,3 +21,12 @@ def get_dictionary_list(filepath):
     with open(filepath) as f:
         dictionary = f.read().splitlines()
     return dictionary
+
+
+def cull_list(input_list):
+    top = len(max(input_list, key=len))
+    return_list = []
+    for i in input_list:
+        if len(i) == top:
+            return_list.append(i)
+    return ", ".join(return_list)
