@@ -47,9 +47,9 @@ def anagram_multi_word(full_word, original, dictionary, results, total_runs=0, b
             return results
 
 
-def is_word_in_target(sub_string, super_string):
-    counter, limit, end_index = 0, len(sub_string), 0
+def is_word_in_target(sub_string, super_string):# Checks if sub_string is in super_string in order. ex. 'tea' in is 'theatre', 'ip' is not in 'pie'
+    counter, limit = 0, len(sub_string)
     for letter in super_string:
         if counter < limit and letter == sub_string[counter]:
-            counter += 1
-    return True if counter == limit else False
+            counter += 1# Since limit is len(sub_string), while counter remains less, search for matching letters cont.
+    return True if counter == limit else False# False returned: counter < limit b/c not all letters of sub_string appeared in order in super_string.
