@@ -12,10 +12,10 @@ def print_map(map)
     puts '#'*(map[0].size+2)
 end
 
-input1 = '8 3 1'
-input2 = '15 4 2'
+input1 = '8 3 1'.split.map(&:to_i)
+input2 = '15 4 2'.split.map(&:to_i)
 
-h, w, v = 15, 4, 2
+h, w, v = input1
 map = map_maker(h, w)
 particle = [0,0]
 y, x = 1, 1
