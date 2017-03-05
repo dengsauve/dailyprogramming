@@ -47,9 +47,18 @@ end
 (ARGV.include? '--help') ? print_help : puts
 (ARGV.include? '-m') ? mapping=false : mapping=true
 (ARGV.include? '-p') ? custom_p=true : custom_p=false
-h, w, v = ARGV.map(&:to_i)
+h, w, v, ph, pw = ARGV.map(&:to_i), 1, 1
+if custom_p
+    if ARGV[ARGV.index('-p')+1] < h && ARGV[ARGV.index('-p')+2] < w
+        ph, pw = ARGV[ARGV.index('-p')+1], ARGV[ARGV.index('-p')+2]
+    else
+        puts "You can't have a particle bigger than the table!"
+        exit
+    end
+end
 bounce, moves = 0, 0
 corners, map = {0=>'UL', (w-1)=>'UR',((h-1)+(w-1))=>'LR', (h-1)=>'LL'}, map_maker(h, w)
+
 particle, x, y = [0,0], 1, 1
 
 # Setting the Particle in place
