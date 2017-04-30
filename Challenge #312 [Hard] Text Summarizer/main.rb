@@ -20,7 +20,16 @@ text = text_file.readline.gsub("\n", '')
 text_file.close
 
 # divide whole text into sentences (logic to avoid acronyms)
-
+sentences, sentence = [], ''
+text.split('').each_with_index do |character, index|
+  if (character == '.' and text.split('')[index-2] != '.' and text.split('')[index+2] != '.') or character == ('?' or  '!')
+    sentences << sentence
+    sentence = ''
+  else
+    sentence += character
+  end
+end
+puts sentences
 
 
 # score sentences initially at 0.0, and -1 point for every stop word.
