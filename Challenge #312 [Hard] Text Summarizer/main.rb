@@ -5,21 +5,21 @@
 
 
 # Read in Stop list
-stop_file = File.open('stop.txt','r+')
+stop_file, stop_list = File.open('stop.txt','r+'), []
 stops = stop_file.readlines
 stops.each do |line|
-  
+  if line.split(' ')[0] != nil and line.split(' ')[0] != '|'
+    stop_list << line.split(' ')[0].gsub('|', '')
+  end
 end
-
-
 stop_file.close
 
+# Read in paragraph.txt
+text_file = File.open('paragraph.txt', 'r+')
+text = text_file.readline.gsub("\n", '')
+text_file.close
 
-
-
-
-# Read in paragraph.text
-
+# divide whole text into sentences (logic to avoid acronyms)
 
 
 
