@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Cvs2Configuration">
+    <option name="SHOW_CORRUPTED_PROJECT_FILES" value="2" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.5.1 (C:\Program Files (x86)\Python35-32\python.exe)" project-jdk-type="Python SDK" />
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Dennis\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
