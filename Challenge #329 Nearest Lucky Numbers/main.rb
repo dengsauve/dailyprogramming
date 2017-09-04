@@ -33,7 +33,7 @@ until ll_num >= (input / 2) or ll_num > set.length
 
   # Set increment
   ll_num = set[index]
-  
+
   limit = (set.length - 1) / ll_num * ll_num
   ( -limit..-(ll_num - 1) ).step(ll_num) do |number|
     set.delete_at(-number - 1)
@@ -47,7 +47,6 @@ unless is_lucky(input, set)
   until is_lucky(min, set)
     min -= 1
   end
-  #min = set.min_by { |x| (x - input).abs }
   max = set[set.index(min) + 1]
   puts "#{min} < #{input} < #{max}"
 else
@@ -55,3 +54,8 @@ else
 end
 
 puts "Time elapsed: #{Time.now - start} second(s)"
+
+
+set.each do |i|
+  puts set[set.index(i) - 1] 
+end
