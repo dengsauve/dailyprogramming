@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,15 +18,23 @@ namespace LuckyCompiled
         {
             int index = 1;
             int ll_num = 1;
+            int limit;
 
-            List<int> set = Enumerable.Range(1, input).ToList();
+            var set = Enumerable.Range(1, input + 20).ToList();
 
             set.RemoveAll(n => n % 2 == 0);
             set.RemoveAll(n => (n + 1) % 6 == 0);
 
             while(ll_num < set.Count)
             {
+                index += 1;
+                ll_num = set[index];
 
+                limit = (set.Count - 1) / ll_num * ll_num;
+                for (var i = -limit; i < -ll_num; i += ll_num)
+                {
+                    set.RemoveAt(-i);
+                }
             }
 
             return set;
@@ -36,9 +45,17 @@ namespace LuckyCompiled
 
         static void Main(string[] args)
         {
-            List<int> nums = createSet(50);
-            int num = 7;
+            Stopwatch casio = new Stopwatch();
+            int num = 10000000;
+            casio.Start();
+            var nums = createSet(num);
             Console.WriteLine(isLucky(num, nums));
+            casio.Stop();
+            Console.WriteLine(casio.Elapsed);
+            //nums.ForEach(Console.WriteLine);
+            //Console.ReadKey();
+
+
         }
     }
 }
