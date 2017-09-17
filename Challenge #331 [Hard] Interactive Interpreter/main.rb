@@ -41,8 +41,30 @@ class String
   end
 end
 
-def sort_stack(stack)
-  
+def insert_operator(character, stack)
+  precendence = {
+      '(' => 1,
+      '^' => 4,
+      '*' => 3,
+      '/' => 3,
+      '+' => 2,
+      '-' => 2
+  }
+  spot = 0
+
+  if character == '('
+    stack.insert(spot, character)
+  else
+    stack.each_with_index do |object, index|
+      if precendence[character] <= precendence[object]
+        spot = index - 1
+        break
+      end
+    end
+    stack.insert(spot, character)
+  end
+
+  return stack
 end
 
 def get_stack(input)
@@ -55,24 +77,31 @@ def get_stack(input)
     else
       case character
         when '(', '^', '*', '+', '-'
-          stack << character
+          stack = insert_operator(character, stack)
         when ')'
           until stack[0] == '('
             output << stack.shift
           end
           stack.shift
         when '/'
-          output << stack.shift
-          stack << character
+          output << stack.shift.to_s
+          stack = insert_operator(character, stack)
         when ' '
         else
           puts 'failure'
       end
     end
   end
-  output << stack.join('')
-  return output
+  return output + stack.join('')
+end
+
+def parse_stack(stack)
+  stack.each_with_index do |character, index|
+
+  end
 end
 
 stack = get_stack("(2 * 5 + 1) / 10")
 puts stack
+
+result = parse_stack(stack)
