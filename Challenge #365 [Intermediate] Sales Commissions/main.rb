@@ -8,7 +8,7 @@ expl = false
 
 f.each do | l |
     if l == "Expenses\n"
-        expl == true
+        expl = true
     end
     unless expl
         unless l == "Revenue \n" || l == "\n"
@@ -22,7 +22,7 @@ f.each do | l |
 end
 
 puts "raw"
-puts rev, exp
+puts rev.inspect, exp.inspect
 
 def parse_table(str)
     names, products = [], []
@@ -40,8 +40,24 @@ r_data = parse_table(rev)
 e_data = parse_table(exp)
 
 puts "DATA"
-puts r_data, e_data
+puts r_data.inspect, e_data.inspect
 
 def compare_tables(tbl_a, tbl_b)
-    
+    names = tbl_a[0]
+    a_data, b_data, n_data = tbl_a[1], tbl_b[1], []
+    a_data.each_with_index do | l, i |
+        new_line = []
+        l.each_with_index do |ll, j|
+            if j == 0
+                new_line << ll
+            else
+                new_line << ll.to_i - b_data[i][j].to_i
+            end
+        end
+        n_data << new_line
+    end
+    return [names, n_data]
 end
+
+c_data = compare_tables(r_data, e_data)
+puts "COMPARED", c_data
